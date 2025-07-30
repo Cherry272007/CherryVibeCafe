@@ -20,6 +20,7 @@
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.7.0",
     "react-scroll": "^1.9.3",
+    "sweetalert2": "^11.22.2",
     "tailwindcss": "^4.1.11",
     "typed.js": "^2.1.0"
   },

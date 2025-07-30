@@ -2,13 +2,11 @@ import './Home.css';
 import { useEffect, useRef } from 'react';
 import Typed from 'typed.js';
 import Menu from './Menu';
-import About from './About';
 import Footer from './Footer';
 
 const Home = () => {
   const el = useRef(null);
   const typedRef = useRef(null);
-
   useEffect(() => {
     if (!el.current) return;
 
@@ -30,7 +28,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="relative w-full Home-background bg-no-repeat bg-cover py-[50px] h-[750px] ">
+      <div className="relative w-full Home-background bg-no-repeat bg-cover py-[50px] h-[800px] ">
         <div className="Text w-[95%] h-[100%] px-[20px] flex items-center justify-end">
         <div className="caption w-[60%] flex flex-col gap-3 items-center justify-center">
           <h1 className="text-white font-serif text-center font-bold uppercase text-[35px]">
@@ -43,8 +41,6 @@ const Home = () => {
           </p>
         </div>
       </div>
-      <Menu/>
-      <Footer/>
       </div>
     </>
   );

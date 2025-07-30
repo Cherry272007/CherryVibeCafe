@@ -1,43 +1,35 @@
-// Modal.jsx
 import React, { useEffect } from 'react';
 
 const Modal = ({ isOpen, onClose, children }) => {
   useEffect(() => {
-    const escHandler = e => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') onClose();
     };
-    if (isOpen) document.addEventListener('keydown', escHandler);
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'hidden';
+    }
+
     return () => {
-      document.removeEventListener('keydown', escHandler);
+      document.removeEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'auto';
     };
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
   return (
-    <div
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
-    >
-      
-      <div className="bg-[#808080b6] flex items-center justify-center rounded p-4 h-full w-full">
-        <div
-          className="bg-white rounded max-w-md p-4 w-full"
-          
+    <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-50" >
+    <div className="bg-[#808080b6] rounded p-4 w-[800px] relative" onClick={(e) => e.stopPropagation()}>
+        <button
+          onClick={onClose}
+          aria-label="Close modal"
+          className="absolute top-7 right-7 text-white bg-gray-800 hover:bg-gray-700 rounded-full w-8 h-8 flex items-center justify-center"
         >
-          <button
-            onClick={e => {
-              e.stopPropagation();
-              onClose();
-            }}
-            className="float-right"
-            aria-label="Close"
-          >
-            ×
-          </button>
-          {children}
-        </div>
+          X
+        </button>
+        {children}
       </div>
     </div>
   );

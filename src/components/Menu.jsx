@@ -1,79 +1,154 @@
-import { useContext, useState } from "react"
-import { ProductContext } from "../Context/ProductContext"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
-import './Modal.jsx'
-import Modal from "./Modal.jsx";
-const Menu = () => {
-    const {Coffee} = useContext(ProductContext);
-    const [selected, setSelected] = useState(null);    // which product is clicked
-    const [showDetail, setShowDetail] = useState(false);
+import { useContext, useState } from "react";
+import { ProductContext } from "../Context/ProductContext";
+import { CartContext } from "../Context/CartContext";
+import CartSidebar from "./CartSidebar";
+import CoffeeCard from "./CoffeeCard";
+import DetailProduct from "./DetailProduct";
+import Payment from "./Payment";
+import QR from "./QR";
+import { forwardRef } from "react";
 
-    function getStar(num) {
-    let stars = [];
-    for (let i = 1; i <= 5; i++) {
-        stars.push(
-            <FontAwesomeIcon
-                key={i}
-                className={i <= num ? "text-amber-300" : "text-gray-300"}
-                icon={faStar}
-            />
-        );
-    }
-    return stars;
-    }
-    const handleClick = val => {
+const sizePriceMap = {
+  Small: 0,
+  Medium: 1,
+  Large: 1.5,
+};
+
+const Menu = forwardRef((props, ref) => {
+  const { Coffee } = useContext(ProductContext);
+  const {
+    cart,
+    addToCart,
+    removeFromCart,
+    totalPrice,
+    showCart,
+    setShowCart,
+  } = useContext(CartContext);
+
+  const [selected, setSelected] = useState(null);
+  const [showDetail, setShowDetail] = useState(false);
+  const [selectedSize, setSize] = useState("Small");
+  const [quantity, setQuantity] = useState(1);
+  const [showPayment, setShowPayment] = useState(false);
+  const [directBuyItem, setDirectBuyItem] = useState(null);
+  const [showQR, setShowQR] = useState(false);
+  const [showMore, setShowMore] = useState(true);
+
+  const getPriceBySize = (item, size) => {
+    if (!item) return 0;
+    return item.price + (sizePriceMap[size] || 0);
+  };
+
+  const handleClick = (val) => {
     setSelected(val);
+    setSize("Small");
+    setQuantity(1);
     setShowDetail(true);
   };
 
-  const handleClose = () => {
+  const handleAddToCart = (item) => {
+    const cartItem = {
+      id: item.id,
+      name: item.name,
+      size: selectedSize,
+      quantity,
+      price: getPriceBySize(item, selectedSize),
+      image: item.image,
+    };
+
+    addToCart(cartItem);
+    setShowCart(true);
     setShowDetail(false);
-    setSelected(null);
+  };
+
+  const handleBuyNow = () => {
+    if (selected) {
+      const item = {
+        id: selected.id,
+        name: selected.name,
+        size: selectedSize,
+        quantity,
+        price: getPriceBySize(selected, selectedSize),
+        image: selected.image,
+      };
+      setDirectBuyItem(item);
+      setShowPayment(true);
+      setShowDetail(false);
+    }
+  };
+
+  const removeCartItem = (index) => {
+    removeFromCart(index);
   };
 
   return (
     <>
-      <div className="w-[100%] bg-gray-100 py-[50px]">
-        <div className="title text-center text-[#6b411f] text-2xl font-bold font-serif">
-            <h1>ALL MENU</h1>
-        </div>
-        <div className="Box-card grid grid-cols-5 gap-4 w-[90%] mx-auto mt-[15px]">
-            {Coffee.map(val=>(
-                <div
-                    key={val.id}
-                    className="card w-full relative h-[350px] shadow-md rounded-md mt-5 overflow-hidden cursor-pointer"
-                    onClick={() => handleClick(val)}>
-                <div className="bg-red-400 absolute top-0 start-0 z-10 py-1 px-2 rounded-br-sm text-white">
-                    {val.category}
-                </div>
-                <div className="image w-full h-[70%] overflow-hidden">
-                    <img className="w-full h-full hover:scale-[1.07] transition ease-in-out duration-100"src={val.image} alt='' />
-                </div>
-                <div className="caption flex flex-col py-1 px-2 w-full h-[30%]">
-                    <span>{val.name}</span>
-                    <span>${val.price}</span>
-                    <span>{getStar(val.rating)}</span>
-                </div>
-            </div>
+      <div className=" w-full bg-gray-100 py-[100px]" ref={ref}>
+      <CartSidebar
+        showCart={showCart}
+        cart={cart}
+        onClose={() => setShowCart(false)}
+        onRemoveItem={removeCartItem}
+        onCheckout={() => {
+          setDirectBuyItem(null);
+          setShowPayment(true);
+          setShowCart(false);
+        }}
+        totalPrice={totalPrice}
+      />
 
-            ))}
+      {/* Menu Items */}
+      <div className="w-full bg-gray-100 py-12">
+        <h1 className="text-center text-[#6b411f] text-3xl font-bold font-serif mb-6">
+          ALL MENU
+        </h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6 px-6">
+          {Coffee.map((val) => (
+            <CoffeeCard
+              key={val.id}
+              coffee={val}
+              onAddToCartClick={handleClick}
+              onCardClick={handleClick}
+            />
+          ))}
         </div>
       </div>
-      <Modal isOpen={showDetail} onClose={handleClose}>
-        {selected && (
-          <div className="space-y‑4">
-            <img src={selected.image} alt={selected.name} className="w‑full h‑auto max‑h‑80 object‑cover rounded"/>
-            <h2 className="text‑2xl font-semibold">{selected.name}</h2>
-            <p className="text‑lg">$ {selected.price}</p>
-            <p className="text‑sm text‑gray‑600">Category: {selected.category}</p>
-            <div>{getStar(selected.rating)}</div>
-            <p className="mt‑2">{selected.description}</p>
-          </div>
-        )}
-      </Modal>
-    </>
-  )
-}
 
-export default Menu
+      <DetailProduct
+        isOpen={showDetail}
+        onClose={() => setShowDetail(false)}
+        selected={selected}
+        selectedSize={selectedSize}
+        setSize={setSize}
+        quantity={quantity}
+        setQuantity={setQuantity}
+        onAddToCart={handleAddToCart}
+        onBuyNow={handleBuyNow}
+        showMore={showMore}
+        toggleShowMore={() => setShowMore((prev) => !prev)}
+      />
+
+      <Payment
+        isOpen={showPayment}
+        onClose={() => setShowPayment(false)}
+        directBuyItem={directBuyItem}
+        cart={cart}
+        totalPrice={totalPrice}
+        onConfirmPayDirect={() => {
+          setShowPayment(false);
+          setShowQR(true);
+          setDirectBuyItem(null);
+        }}
+        onConfirmPayCart={() => {
+          setShowPayment(false);
+          setShowQR(true);
+        }}
+      />
+
+      <QR isOpen={showQR} onClose={() => setShowQR(false)} />
+      </div>
+    </>
+  );
+});
+
+export default Menu;

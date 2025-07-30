@@ -16,7 +16,8 @@ const Location = () => {
           style={{ border: 0 }}
           allowFullScreen=""
           title="Google Map Location"
-          className="shadow-lg"
+          className="shadow-lg hover:scale-102 transition-transform duration-200 "
+          
         ></iframe>
       </div>
     </>

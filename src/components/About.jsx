@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 const About = () => {
-  const [showMore, setShowMore] = useState(false);
-  const[NshowMore,setNshowMore]=useState(false)
+  const [showMore, setShowMore] = useState('Show More');
+  const[NshowMore,setNshowMore]=useState('Show More');
     const shortText = `CherryVibe Café began as a heartfelt dream by our founder, Ms. Cherry, a passionate Cambodian woman with a deep love for coffee, creativity, and community...`;
     const fullText = `${shortText} Inspired by the sweet and cheerful vibe of cherries, we infused that same energy into our menu, our service, and our space. Every drink is handcrafted, every dish thoughtfully made, and every corner of our café designed to spark joy — whether you’re studying solo, hanging out with friends, or taking a well-deserved break. What started as a small idea has grown into a favorite hangout for students, creatives, and coffee lovers alike. And we’re just getting started. Come for the flavor. Stay for the vibe.`;
     const Nshort=`At Cherry Vibe Café, we believe that atmosphere is just as important as taste. That’s why we’ve created a space that feels cozy, calm, and full of good energy — a place where you can relax, be yourself, and enjoy the little things.`
@@ -20,13 +20,13 @@ const About = () => {
           </p>
         </div>
         <div className="Founder flex flex-col gap-3 items-center justify-center">
-          <img className="w-[250px] rounded-2xl  shadow-2xl" src="src/image/IMG_9334.PNG" alt="" />
-          <p className="text-[18px] w-[320px] text-center  font-bold text-[#6b411f]">Ms. Chan Sovannary (Cherry),CEO of CherryVibe Café</p>
+          <img className="w-[250px] rounded-2xl  shadow-2xl transition-transform duration-200 hover:-translate-y-2 " src="src/image/IMG_9334.PNG" alt="" />
+          <p className="text-[18px] w-[320px] text-center  font-bold text-[#6b411f]">Ms.Cherry, CEO of CherryVibe Café</p>
         </div>
       </div>
       {/* environment */}
       <div className="environment bg-[#fbdcac] w-full h-[750px] grid grid-cols-2 items-center justify-center">
-        <div className="Founder flex flex-col gap-3 items-center justify-center">
+        <div className="Founder flex flex-col gap-3 items-center justify-center hover:scale-105 transition-transform duration-200">
           <img className="w-120 shadow-2xl" src="src/image/image copy 2.png" alt="" />
           <img className="w-120 shadow-2xl" src="src/image/image copy.png" alt="" />
         </div>

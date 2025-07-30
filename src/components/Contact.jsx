@@ -34,7 +34,7 @@ const Contact = () => {
                 </a>
               </div>
             </div>
-          <form action="" className="Form w-[500px] bg-white flex flex-col gap-3 items-center justify-center p-[50px] rounded-[2px]">
+          <form action="" className="Form w-[500px]  bg-white flex flex-col gap-3 items-center justify-center p-[50px] rounded-[2px] hover:scale-102 transition-transform duration-200 shadow-lg">
             <h1 className='text-2xl font-bold '>Contact us</h1>
             <div className="form-group w-full flex flex-col gap-2">
               <label htmlFor="" className='text-[18px]'>Full Name :</label>
