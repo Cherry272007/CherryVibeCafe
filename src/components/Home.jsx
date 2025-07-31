@@ -26,7 +26,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="relative w-full Home-background bg-no-repeat bg-cover py-[50px] h-[800px] ">
+      <div style={{ backgroundImage: `url('/image/image copy 4.png')`, backgroundRepeat:'no-repeat', backgroundSize:'cover' }} className="relative w-full py-[50px] h-[800px] ">
         <div className="Text w-[95%] h-[100%] px-[20px] flex items-center justify-end">
         <div className="caption w-[60%] flex flex-col gap-3 items-center justify-center">
           <h1 className="text-white font-serif text-center font-bold uppercase text-[35px]">

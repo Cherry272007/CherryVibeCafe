@@ -3,7 +3,7 @@ import './Contact.css'
 const Contact = () => {
   return (
     <div>
-      <div className="relative w-full Contact-background bg-no-repeat bg-cover py-[50px] h-[750px] grid grid-cols-2 items-center justify-center px-[80px] ">
+      <div style={{ backgroundImage: `url('./image/image.png')`, backgroundRepeat:'no-repeat', backgroundSize:'cover' }}  className="relative w-full  py-[50px] h-[750px] grid grid-cols-2 items-center justify-center px-[80px] ">
           <div className="space-y-3 font-bold">
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-amber-200 mt-0.5 flex-shrink-0" />

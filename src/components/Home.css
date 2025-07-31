@@ -16,11 +16,11 @@
   animation: typing 4s steps(30, end) forwards, blink 0.7s step-end infinite;
 }
 /* Home.css */
-.Home-background {
+/* .Home-background {
   background-image: url('./image/image copy 4.png');
   background-repeat: no-repeat;
   background-size: cover;
-}
+} */
 
 
 @keyframes typing {
