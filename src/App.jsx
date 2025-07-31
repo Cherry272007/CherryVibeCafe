@@ -31,7 +31,7 @@ const App = () => {
                   <Menu ref={productRef} />
                 </>
               } />
-              <Route path="/Menu" element={<Menu />} />
+              <Route path="/Menu" element={<Menu/>} />
               <Route path="/Contact" element={<Contact />} />
               <Route path="/About" element={<About />} />
               <Route path="/Location" element={<Location />} />

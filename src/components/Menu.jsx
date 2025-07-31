@@ -83,8 +83,8 @@ const Menu = forwardRef((props, ref) => {
 
   return (
     <>
-      <div className=" w-full bg-gray-100 py-[100px]" ref={ref}>
-      <CartSidebar
+      <div className=" w-full Z-111 bg-gray-100 py-[50px]" ref={ref}>
+      <CartSidebar 
         showCart={showCart}
         cart={cart}
         onClose={() => setShowCart(false)}

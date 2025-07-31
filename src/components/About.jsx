@@ -20,15 +20,15 @@ const About = () => {
           </p>
         </div>
         <div className="Founder flex flex-col gap-3 items-center justify-center">
-          <img className="w-[250px] rounded-2xl  shadow-2xl transition-transform duration-200 hover:-translate-y-2 " src="src/image/IMG_9334.PNG" alt="" />
+          <img className="w-[250px] rounded-2xl  shadow-2xl transition-transform duration-200 hover:-translate-y-2 " src="./image/IMG_9334.PNG" alt="" />
           <p className="text-[18px] w-[320px] text-center  font-bold text-[#6b411f]">Ms.Cherry, CEO of CherryVibe Café</p>
         </div>
       </div>
       {/* environment */}
       <div className="environment bg-[#fbdcac] w-full h-[750px] grid grid-cols-2 items-center justify-center">
         <div className="Founder flex flex-col gap-3 items-center justify-center hover:scale-105 transition-transform duration-200">
-          <img className="w-120 shadow-2xl" src="src/image/image copy 2.png" alt="" />
-          <img className="w-120 shadow-2xl" src="src/image/image copy.png" alt="" />
+          <img className="w-120 shadow-2xl" src="./image/image copy 2.png" alt="" />
+          <img className="w-120 shadow-2xl" src="./image/image copy.png" alt="" />
         </div>
         <div className="caption flex flex-col gap-3 items-center justify-center px-[80px]">
           <h1 className="text-3xl  font-bold text-[#6b411f]">Our Environment</h1>

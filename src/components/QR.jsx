@@ -19,12 +19,12 @@ const QR = ({ isOpen, onClose }) => {
         <div className="image flex gap-2 mt-4 mb-4 justify-center">
           <img
             className="w-[250px] shadow-lg"
-            src="src/image/ABA.JPEG"
+            src="./image/ABA.JPEG"
             alt="ABA QR"
           />
           <img
             className="w-[250px] shadow-lg"
-            src="src/image/AC.JPG"
+            src="./image/AC.JPG"
             alt="AC QR"
           />
         </div>

@@ -1,11 +1,11 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 const getStar = (num) => {
   return Array.from({ length: 5 }, (_, i) => (
     <FontAwesomeIcon
       key={i}
-      className={i + 1 <= num ? "text-amber-400" : "text-gray-300"}
+      className={i + 1 <= num ? 'text-amber-400' : 'text-gray-300'}
       icon={faStar}
     />
   ));
@@ -33,14 +33,15 @@ const CoffeeCard = ({ coffee, onAddToCartClick, onCardClick }) => {
         <div>{getStar(coffee.rating)}</div>
       </div>
       <button
-        className="absolute bottom-4 right-4 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 z-20"
-        onClick={(e) => {
-          e.stopPropagation();
-          onAddToCartClick(coffee);
-        }}
-      >
-        Add to cart
-      </button>
+      className="absolute bottom-4 right-4 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 z-20"
+      onClick={(e) => {
+        e.stopPropagation(); // Prevents the parent onClick from firing
+        onAddToCartClick(coffee);
+      }}
+    >
+      Add to cart
+    </button>
+
     </div>
   );
 };

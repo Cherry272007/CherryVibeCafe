@@ -11,7 +11,7 @@ const CartSidebar = ({
 }) => {
   return (
     <div
-      className={`fixed top-0 right-0 h-full w-80 bg-white shadow-lg z-50 transform transition-transform duration-300 ${
+      className={`fixed top-30 right-0 h-full w-80 bg-white shadow-lg z-50 transform transition-transform duration-300 ${
         showCart ? "translate-x-0" : "translate-x-full"
       }`}
     >

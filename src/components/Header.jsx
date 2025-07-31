@@ -10,15 +10,15 @@ const Header = ({onMenuClick}) => {
       <header className='w-full sticky top-0 z-111 bg-[#3e2a17] shadow-lg '>
         <div className="header w-[90%] flex items-center justify-between">
           <div className="logo p-4 px-[80px]">
-            <img className='w-[100px] rounded-[100%] hover:shadow-[0_0_15px_#f97316] hover:shadow-[0_0_8px_#f97316,0_0_16px_#f97316] transition-all duration-300' src="src/image/CherryCafe.jpg" alt="logo" />
+            <img className='w-[100px] rounded-[100%] hover:shadow-[0_0_15px_#f97316] hover:shadow-[0_0_8px_#f97316,0_0_16px_#f97316] transition-all duration-300' src="./image/CherryCafe.jpg" alt="logo" />
           </div>
           <div className="menu flex gap-5 justify-center items-center" style={{scroll:'smooth'}}>
             <Link className='font-bold text-white font-sans text-[18px] hover:underline hover:text-[#53422e] ' to={'/'}>Home</Link>
              <button
-              className='font-bold text-white font-sans text-[18px] hover:underline hover:text-[#53422e]'
+              className='font-bold text-white font-sans text-[18px] cursor-pointer hover:underline hover:text-[#53422e]'
               onClick={onMenuClick}
             >
-             Menu
+             <Link className='font-bold text-white font-sans text-[18px] hover:underline hover:text-[#53422e] ' to={'/Menu'}>Menu</Link>
             </button>
             <Link className='font-bold text-white font-sans text-[18px] hover:underline hover:text-[#53422e] ' to={'/Contact'}>Contact</Link>
             <Link className='font-bold text-white font-sans text-[18px] hover:underline hover:text-[#53422e] ' to={'/About'}>About Us</Link>

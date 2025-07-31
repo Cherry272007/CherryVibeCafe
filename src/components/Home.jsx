@@ -1,8 +1,6 @@
 import './Home.css';
 import { useEffect, useRef } from 'react';
 import Typed from 'typed.js';
-import Menu from './Menu';
-import Footer from './Footer';
 
 const Home = () => {
   const el = useRef(null);
